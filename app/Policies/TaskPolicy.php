@@ -7,16 +7,27 @@ use App\Models\User;
 
 class TaskPolicy
 {
-    /**
-     * Create a new policy instance.
-     */
     public function __construct()
     {
-        //
+        
     }
     public function view(User $user, Task $task): bool
     {
-        // Logic to determine if the user can view the model
         return $user->id === $task->user_id;
     }
+
+    public function viewAny(User $user): bool
+    {
+        return true;
+    }
+
+    public function update(User $user, Task $task): bool
+    {
+        return $user->id === $task->user_id;
+    }
+    public function delete(User $user, Task $task): bool
+    {
+        return $user->id === $task->user_id;
+    }
+
 }
